@@ -708,6 +708,20 @@ int main(int argc, char **argv)
 		batch_output_file = arg_list[batch_arg+1];
 	}
 
+	const char *load_seed = NULL;
+
+       int seed_arg = ArgvFind('s', "seed");
+       if (seed_arg >= 0)
+       {
+               if (seed_arg+1 >= arg_count || ArgvIsOption(seed_arg+1))
+               {
+                       fprintf(stderr, "OBLIGE ERROR: missing string for --seed\n");
+                       exit(9);
+               }
+
+               load_seed = arg_list[seed_arg+1];
+       }
+
 
 	Determine_WorkingPath(argv[0]);
 	Determine_InstallDir(argv[0]);
@@ -798,7 +812,8 @@ int main(int argc, char **argv)
 
 		Cookie_ParseArguments();
 
-		Main_SetSeed();
+		//Main_SetSeed(); // FIXME testing whether this is the proper way to input seed in batch mode cli 
+		ob_set_config("seed", load_seed);
 
 		if (! Build_Cool_Shit())
 		{
