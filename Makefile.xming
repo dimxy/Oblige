@@ -16,7 +16,7 @@ OBJ_DIR=obj_win32
 
 FLTK_DIR=$(LIB_LOC)/fltk1.3
 #ZLIB_DIR=$(LIB_LOC)/zlib-1.2.8
-ZLIB_DIR=$(LIB_LOC)/fltk1.3
+ZLIB_DIR=$(LIB_LOC)/zlib
 
 OPTIMISE=-O2 -fno-strict-aliasing
 
@@ -32,7 +32,7 @@ FLTK_LIBS=$(FLTK_DIR)/libfltk_images.a \
 	  $(FLTK_DIR)/libfltk.a
 
 ZLIB_FLAGS=-I$(ZLIB_DIR)
-ZLIB_LIBS=$(ZLIB_DIR)/libfltk_z.a
+ZLIB_LIBS=$(FLTK_DIR)/libfltk_z.a
 
 CXXFLAGS=$(OPTIMISE) -Wall -D$(OS) \
          -Ilua_src -Iglbsp_src -Iajpoly_src -Iphysfs_src -Ilib_win32/fltk1.3 -Ilib_win32/zlib1g \
